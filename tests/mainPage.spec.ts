@@ -15,17 +15,13 @@ test.describe('Main page test', async () => {
   });
 
   test('Check that header nav elems has correct naming', async ({ page }) => {
-    await expect(
-      page.getByRole('link', { name: 'Playwright logo Playwright', exact: true }),
-    ).toContainText('Playwright');
-    await expect(page.getByRole('link', { name: 'Docs', exact: true })).toContainText('Docs');
-    await expect(page.getByRole('link', { name: 'API', exact: true })).toContainText('API');
-    await expect(page.getByRole('button', { name: 'Node.js', exact: true })).toContainText(
-      'Node.js',
-    );
-    await expect(page.getByRole('link', { name: 'Community', exact: true })).toContainText(
-      'Community',
-    );
+    elements.forEach(({ locator, name, text }) => {
+      if (text) {
+        test.step(`Check the text of header's ${name} element`, async () => {
+          await expect.soft(locator(page)).toContainText(text);
+        });
+      }
+    });
   });
 
   test('Check the href attribute of headers link', async ({ page }) => {
