@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { elements } from '../elements/MainPageELements';
+import { elements } from '../elements/MainPageElements';
 
-test.describe('Main page test', async () => {
+test.describe('Main page test', () => {
   test.beforeEach(async ({ page }) => {
     await await page.goto('https://playwright.dev/');
   });
@@ -25,27 +25,13 @@ test.describe('Main page test', async () => {
   });
 
   test('Check the href attribute of headers link', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Playwright logo Playwright' })).toHaveAttribute(
-      'href',
-      '/',
-    );
-    await expect(page.getByRole('link', { name: 'Docs' })).toHaveAttribute('href', '/docs/intro');
-    await expect(page.getByRole('link', { name: 'API' })).toHaveAttribute(
-      'href',
-      '/docs/api/class-playwright',
-    );
-    await expect(page.getByRole('link', { name: 'Community' })).toHaveAttribute(
-      'href',
-      '/community/welcome',
-    );
-    await expect(page.getByRole('link', { name: 'GitHub repository' })).toHaveAttribute(
-      'href',
-      'https://github.com/microsoft/playwright',
-    );
-    await expect(page.getByRole('link', { name: 'Discord server' })).toHaveAttribute(
-      'href',
-      'https://aka.ms/playwright/discord',
-    );
+    elements.forEach(({ locator, name, attributes }) => {
+      if (attributes) {
+        test.step(`Check the href of ${name} header element`, async () => {
+          await expect(locator(page)).toHaveAttribute(attributes?.type, attributes?.value);
+        });
+      }
+    });
   });
 
   test('Check the changing of theme mode', async ({ page }) => {
