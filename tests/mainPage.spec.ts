@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Main page test', async () => {
+  test.beforeEach(async ({ page }) => {
+    await await page.goto('https://playwright.dev/');
+  });
+
   test('Check exist of header nav elements', async ({ page }) => {
-    await page.goto('https://playwright.dev/');
     await expect(page.getByRole('link', { name: 'Playwright logo Playwright' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Docs' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'API' })).toBeVisible();
@@ -15,8 +18,6 @@ test.describe('Main page test', async () => {
   });
 
   test('Check that header nav elems has correct naming', async ({ page }) => {
-    await page.goto('https://playwright.dev/');
-
     await expect(
       page.getByRole('link', { name: 'Playwright logo Playwright', exact: true }),
     ).toContainText('Playwright');
@@ -31,8 +32,6 @@ test.describe('Main page test', async () => {
   });
 
   test('Check the href attribute of headers link', async ({ page }) => {
-    await page.goto('https://playwright.dev/');
-
     await expect(page.getByRole('link', { name: 'Playwright logo Playwright' })).toHaveAttribute(
       'href',
       '/',
@@ -57,15 +56,11 @@ test.describe('Main page test', async () => {
   });
 
   test('Check the changing of theme mode', async ({ page }) => {
-    await page.goto('https://playwright.dev/');
-
     await page.getByLabel('Switch between dark and light').click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   });
 
   test('Check the h1 title', async ({ page }) => {
-    await page.goto('https://playwright.dev/');
-
     await expect(page.getByRole('heading', { name: 'Playwright enables reliable' })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Playwright enables reliable' })).toContainText(
       'Playwright enables reliable end-to-end testing for modern web apps.',
@@ -73,8 +68,6 @@ test.describe('Main page test', async () => {
   });
 
   test('Get started button is present on the page', async ({ page }) => {
-    await page.goto('https://playwright.dev/');
-
     await expect(page.getByRole('link', { name: 'Get started' })).toBeVisible();
     await expect(page.getByRole('link', { name: 'Get started' })).toContainText('Get started');
     await expect(page.getByRole('link', { name: 'Get started' })).toHaveAttribute(
