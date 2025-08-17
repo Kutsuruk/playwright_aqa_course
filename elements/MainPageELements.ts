@@ -2,7 +2,7 @@ import { Locator, Page } from '@playwright/test';
 import { Interface } from 'readline';
 import { Elements } from '../Interfaces/Elements.interface';
 
-const elements: Elements[] = [
+export const elements: Elements[] = [
   {
     locator: (page: Page): Locator =>
       page.getByRole('link', { name: 'Playwright logo Playwright' }),
@@ -73,5 +73,20 @@ const elements: Elements[] = [
     locator: (page: Page): Locator => page.getByRole('button', { name: 'Search (Command+K)' }),
     name: 'Search (Command+K)',
     text: '',
+  },
+  {
+    locator: (page: Page): Locator =>
+      page.getByRole('heading', { name: 'Playwright enables reliable' }),
+    name: 'Playwright enables reliable',
+    text: '',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Get started' }),
+    name: 'Get started',
+    text: '',
+    attributes: {
+      type: 'href',
+      value: '/docs/intro',
+    },
   },
 ];

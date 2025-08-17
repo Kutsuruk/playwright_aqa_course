@@ -40,18 +40,23 @@ test.describe('Main page test', () => {
   });
 
   test('Check the h1 title', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Playwright enables reliable' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Playwright enables reliable' })).toContainText(
-      'Playwright enables reliable end-to-end testing for modern web apps.',
-    );
+    elements.forEach(({ locator, name }) => {
+      async () => {
+        await expect(locator(page)).toBeVisible();
+        await expect(locator(page)).toContainText(name);
+      };
+    });
   });
 
   test('Get started button is present on the page', async ({ page }) => {
-    await expect(page.getByRole('link', { name: 'Get started' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Get started' })).toContainText('Get started');
-    await expect(page.getByRole('link', { name: 'Get started' })).toHaveAttribute(
-      'href',
-      '/docs/intro',
-    );
+    elements.forEach(({ locator, name, attributes }) => {
+      async () => {
+        if (attributes) {
+          await expect(locator(page)).toBeVisible();
+          await expect(locator(page)).toContainText(name);
+          await expect(locator(page)).toHaveAttribute(attributes?.value, attributes?.type);
+        }
+      };
+    });
   });
 });
