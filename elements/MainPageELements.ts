@@ -1,6 +1,11 @@
-export const elements = [
+import { Locator, Page } from '@playwright/test';
+import { Interface } from 'readline';
+import { Elements } from '../Interfaces/Elements.interface';
+
+const elements: Elements[] = [
   {
-    locator: (page) => page.getByRole('link', { name: 'Playwright logo Playwright' }),
+    locator: (page: Page): Locator =>
+      page.getByRole('link', { name: 'Playwright logo Playwright' }),
     name: 'Playwright logo Playwright',
     text: 'Playwright',
     attributes: {
@@ -9,7 +14,7 @@ export const elements = [
     },
   },
   {
-    locator: (page) => page.getByRole('link', { name: 'Docs' }),
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Docs' }),
     name: 'Docs',
     text: 'Docs',
     attributes: {
@@ -18,7 +23,7 @@ export const elements = [
     },
   },
   {
-    locator: (page) => page.getByRole('link', { name: 'API' }),
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'API' }),
     name: 'API',
     text: 'API',
     attributes: {
@@ -27,12 +32,12 @@ export const elements = [
     },
   },
   {
-    locator: (page) => page.getByRole('button', { name: 'Node.js' }),
+    locator: (page: Page): Locator => page.getByRole('button', { name: 'Node.js' }),
     name: 'Node.js',
     text: 'Node.js',
   },
   {
-    locator: (page) => page.getByRole('link', { name: 'Community' }),
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Community' }),
     name: 'Community',
     text: 'Community',
     attributes: {
@@ -41,7 +46,7 @@ export const elements = [
     },
   },
   {
-    locator: (page) => page.getByRole('link', { name: 'GitHub repository' }),
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'GitHub repository' }),
     name: 'GitHub repository',
     text: '',
     attributes: {
@@ -50,7 +55,7 @@ export const elements = [
     },
   },
   {
-    locator: (page) => page.getByRole('link', { name: 'Discord server' }),
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Discord server' }),
     name: 'Discord server',
     text: '',
     attributes: {
@@ -59,12 +64,13 @@ export const elements = [
     },
   },
   {
-    locator: (page) => page.getByRole('button', { name: 'Switch between dark and light' }),
+    locator: (page: Page): Locator =>
+      page.getByRole('button', { name: 'Switch between dark and light' }),
     name: 'Switch between dark and light',
     text: '',
   },
   {
-    locator: (page) => page.getByRole('button', { name: 'Search (Command+K)' }),
+    locator: (page: Page): Locator => page.getByRole('button', { name: 'Search (Command+K)' }),
     name: 'Search (Command+K)',
     text: '',
   },
