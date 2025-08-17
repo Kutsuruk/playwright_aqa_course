@@ -1,6 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import { Interface } from 'readline';
-import { Elements } from '../Interfaces/Elements.interface';
+import { Elements, LightModes } from '../Interfaces/Elements.interface';
 
 export const elements: Elements[] = [
   {
@@ -90,3 +89,5 @@ export const elements: Elements[] = [
     },
   },
 ];
+
+export const lightModes: LightModes[] = ['light', 'dark'];

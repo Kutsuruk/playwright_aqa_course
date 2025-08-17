@@ -9,3 +9,5 @@ export interface Elements {
     value: string;
   };
 }
+
+export type LightModes = 'light' | 'dark';

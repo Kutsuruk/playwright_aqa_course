@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { elements } from '../elements/MainPageElements';
+import { elements, lightModes } from '../elements/MainPageElements';
 
 test.describe('Main page test', () => {
   test.beforeEach(async ({ page }) => {
@@ -57,6 +57,15 @@ test.describe('Main page test', () => {
           await expect(locator(page)).toHaveAttribute(attributes?.value, attributes?.type);
         }
       };
+    });
+  });
+
+  lightModes.forEach((value) => {
+    test(`Check the active style of ${value} mode`, async ({ page }) => {
+      await page.evaluate((value) => {
+        document.querySelector('html')?.setAttribute('data-theme', value);
+      }, value);
+      await expect(page).toHaveScreenshot(`page-with-${value}.png`);
     });
   });
 });
