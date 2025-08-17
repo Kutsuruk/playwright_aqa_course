@@ -60,14 +60,12 @@ test.describe('Main page test', () => {
     });
   });
 
-  test('Check the active style of theme mode', async ({ page }) => {
-    lightModes.forEach((value) => {
-      test(`Check the active style of ${value} mode`, async ({ page }) => {
-        await page.evaluate((value) => {
-          document.querySelector('html')?.setAttribute('data-theme', value);
-        }, value);
-        await expect(page).toHaveScreenshot(`page-with-${value}.png`);
-      });
+  lightModes.forEach((value) => {
+    test(`Check the active style of ${value} mode`, async ({ page }) => {
+      await page.evaluate((value) => {
+        document.querySelector('html')?.setAttribute('data-theme', value);
+      }, value);
+      await expect(page).toHaveScreenshot(`page-with-${value}.png`);
     });
   });
 });
