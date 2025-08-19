@@ -45,8 +45,11 @@ export class MainPage {
     }
   }
 
-  async clickSwitchThemeButton() {
+  async clickSwitchThemeIcon() {
     await this.page.getByLabel('Switch between dark and light').click();
+  }
+
+  async checkDataThemeAttributeValue() {
     await expect(this.page.locator('html')).toHaveAttribute('data-theme', 'light');
   }
 
