@@ -1,17 +1,16 @@
-import { test, expect } from '@playwright/test';
-import { elements, lightModes } from '../elements/MainPageElements';
+import { test, expect, Page } from '@playwright/test';
+import { elements, lightModes } from '../../elements/MainPageElements';
+import { MainPage } from '../models/MainPage';
 
 test.describe('Main page test', () => {
   test.beforeEach(async ({ page }) => {
-    await await page.goto('https://playwright.dev/');
+    // await page.goto('https://playwright.dev/');
   });
 
   test('Check exist of header nav elements', async ({ page }) => {
-    elements.forEach(({ locator, name }) => {
-      test.step(`Check the availability of header's ${name} logos`, async () => {
-        await expect.soft(locator(page)).toBeVisible();
-      });
-    });
+    const mainPage = new MainPage(page);
+    await mainPage.openMainPage();
+    await mainPage.checkHeaderElementsVisability();
   });
 
   test('Check that header nav elems has correct naming', async ({ page }) => {
