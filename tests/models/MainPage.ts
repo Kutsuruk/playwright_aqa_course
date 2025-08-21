@@ -1,16 +1,18 @@
 import test, { expect, Page } from '@playwright/test';
-import { elements, lightModes } from '../../elements/MainPageElements';
-import { Elements, LightModes } from '../../Interfaces/Elements.interface';
+import { companies, elements, lightModes } from '../../elements/MainPageElements';
+import { Companies, Elements, LightModes } from '../../Interfaces/Elements.interface';
 
 export class MainPage {
   readonly page: Page;
   readonly elements: Elements[];
   readonly lightModes: LightModes[];
+  readonly companies: Companies[];
 
   constructor(page: Page) {
     this.page = page;
     this.elements = elements;
     this.lightModes = lightModes;
+    this.companies = companies;
   }
 
   async openMainPage() {
@@ -82,6 +84,14 @@ export class MainPage {
         }, value);
         await expect(page).toHaveScreenshot(`page-with-${value}.png`);
       };
+    }
+  }
+
+  async checkChosenByCompanies() {
+    for (const { locator, name } of this.companies) {
+      test.step(`Chosen by ${name} company`, async () => {
+        await expect.soft(locator(this.page)).toBeVisible();
+      });
     }
   }
 }

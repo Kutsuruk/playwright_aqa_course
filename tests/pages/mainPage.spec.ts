@@ -1,4 +1,5 @@
 import { test, expect } from '../fixtures/mainPage';
+import { MainPage } from '../models/MainPage';
 
 test.describe('Main page test', () => {
   test('Check exist of header nav elements', async ({ mainPage }) => {
@@ -34,5 +35,10 @@ test.describe('Main page test', () => {
   test(`Check the active style of theme mode`, async ({ mainPage }) => {
     await mainPage.openMainPage();
     mainPage.checkTheActiveThemeStatus();
+  });
+
+  test('Check the chosen by companies', async ({ mainPage }) => {
+    await mainPage.openMainPage();
+    mainPage.checkChosenByCompanies();
   });
 });

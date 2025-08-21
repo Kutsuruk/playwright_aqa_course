@@ -11,3 +11,8 @@ export interface Elements {
 }
 
 export type LightModes = 'light' | 'dark';
+
+export interface Companies {
+  locator: (page: Page) => Locator;
+  name?: string;
+}

@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test';
-import { Elements, LightModes } from '../Interfaces/Elements.interface';
+import { Companies, Elements, LightModes } from '../Interfaces/Elements.interface';
 
 export const elements: Elements[] = [
   {
@@ -91,3 +91,42 @@ export const elements: Elements[] = [
 ];
 
 export const lightModes: LightModes[] = ['light', 'dark'];
+
+export const companies: Companies[] = [
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'VS Code' }),
+    name: 'VS Code',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Bing' }),
+    name: 'Bing',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Outlook' }),
+    name: 'Outlook',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Disney+ Hotstar' }),
+    name: 'Disney Hotstar',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Material UI' }),
+    name: 'Material UI',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'ING', exact: true }),
+    name: 'ING',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Adobe' }),
+    name: 'Adobe',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'React Navigation' }),
+    name: 'React Navigation',
+  },
+  {
+    locator: (page: Page): Locator => page.getByRole('link', { name: 'Accessibility Insights' }),
+    name: 'Accessibility Insights',
+  },
+];
